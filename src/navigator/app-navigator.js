@@ -8,38 +8,39 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import * as NavigationService from './navigation-service';
 import { navigationRef } from './navigation-service';
 
-// stacks & tabs
-const BottomTab = createBottomTabNavigator();
 
 // screens
 import Home from '../containers/Home';
 import Post from '../containers/Post';
 import Profile from '../containers/Profile';
 
+// stacks & tabs
+const BottomTab = createBottomTabNavigator();
+
 const AppNavigator = () => {
   return (
     <NavigationContainer ref={navigationRef}>
       <BottomTab.Navigator
         screenOptions={{
-          headerShown: false,
+          headerShown: true,
         }}>
         <BottomTab.Screen
           options={{
-            headerShown: false,
+            headerShown: true,
           }}
           name="Home"
           component={Home}
         />
         <BottomTab.Screen
           options={{
-            headerShown: false,
+            headerShown: true,
           }}
           name="Post"
           component={Post}
         />
         <BottomTab.Screen
           options={{
-            headerShown: false,
+            headerShown: true,
           }}
           name="Profile"
           component={Profile}

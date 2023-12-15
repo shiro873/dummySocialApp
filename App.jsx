@@ -6,22 +6,15 @@
  */
 
 import React from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
 import AppNavigator from './src/navigator/app-navigator';
+import { store } from './src/redux/store';
+import { Provider } from 'react-redux';
 
 function App() {
   return (
-    <SafeAreaView>
+    <Provider store={store}>
       <AppNavigator />
-    </SafeAreaView>
+    </Provider>
   );
 }
 

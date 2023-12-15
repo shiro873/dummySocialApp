@@ -15,11 +15,12 @@ import {
   useColorScheme,
   View,
 } from 'react-native';
+import AppNavigator from './src/navigator/app-navigator';
 
 function App() {
   return (
     <SafeAreaView>
-      <Text>Test</Text>
+      <AppNavigator />
     </SafeAreaView>
   );
 }

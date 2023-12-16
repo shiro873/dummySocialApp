@@ -14,39 +14,72 @@ import { navigationRef } from './navigation-service';
 import Home from '../containers/Home';
 import Post from '../containers/Post';
 import Profile from '../containers/Profile';
+import Login from '../containers/Login';
+import Register from '../containers/Register';
 
 // stacks & tabs
 const BottomTab = createBottomTabNavigator();
+const Stack = createNativeStackNavigator();
+
+
+const BottomTabNavigator = () => {
+  return (
+    <BottomTab.Navigator
+      screenOptions={{
+        headerShown: true,
+      }}
+      initialRouteName='Home'
+    >
+      <BottomTab.Screen
+        options={{
+          headerShown: true,
+        }}
+        name="Home"
+        component={Home}
+      />
+      <BottomTab.Screen
+        options={{
+          headerShown: true,
+        }}
+        name="Post"
+        component={Post}
+      />
+      <BottomTab.Screen
+        options={{
+          headerShown: true,
+        }}
+        name="Profile"
+        component={Profile}
+      />
+    </BottomTab.Navigator>
+  )
+}
 
 const AppNavigator = () => {
   return (
     <NavigationContainer ref={navigationRef}>
-      <BottomTab.Navigator
-        screenOptions={{
-          headerShown: true,
-        }}>
-        <BottomTab.Screen
+      <Stack.Navigator
+        initialRouteName='Login'
+      >
+        <Stack.Screen
           options={{
-            headerShown: true,
+            headerShown: false,
           }}
-          name="Home"
-          component={Home}
+          name='Login'
+          component={Login}
         />
-        <BottomTab.Screen
+        <Stack.Screen
           options={{
-            headerShown: true,
+            headerShown: false,
           }}
-          name="Post"
-          component={Post}
+          name='Register'
+          component={Register}
         />
-        <BottomTab.Screen
-          options={{
-            headerShown: true,
-          }}
-          name="Profile"
-          component={Profile}
+        <Stack.Screen
+          name='HomeStack'
+          component={BottomTabNavigator}
         />
-      </BottomTab.Navigator>
+      </Stack.Navigator>
     </NavigationContainer>
   );
 };

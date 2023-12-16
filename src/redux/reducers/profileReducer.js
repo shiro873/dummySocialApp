@@ -12,13 +12,13 @@ export const profileSlice = createSlice({
       console.log('action.payload ', action.payload);
       state.profile = action.payload;
     },
-    lougoutUser: (state) => {
+    logoutUser: (state) => {
       state.profile = {};
     }
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { loginUser, lougoutUser } = profileSlice.actions
+export const { loginUser, logoutUser } = profileSlice.actions
 
 export default profileSlice.reducer

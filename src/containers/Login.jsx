@@ -42,7 +42,7 @@ const Login = () => {
     }
 
     useEffect(() => {
-        signOut();
+        // signOut();
         let subscriber = subscribeAuthState(onAuthStateChanged);
         return subscriber;
     }, []);

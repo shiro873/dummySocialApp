@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "133573585443",
+    "project_id": "dummysocialapp-7c6c1",
+    "storage_bucket": "dummysocialapp-7c6c1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:133573585443:android:ef5a90f0bf03983d919f96",
+        "android_client_info": {
+          "package_name": "com.dummysocialapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBxG6GRqumxuBH1gNvQykLdy8yXnsFSojw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

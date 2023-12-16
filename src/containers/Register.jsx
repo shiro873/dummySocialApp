@@ -26,7 +26,6 @@ const Register = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [reEnterPassword, setReEnterPassword] = useState('');
-    const [username, setUsername] = useState('');
     const [emailError, setEmailError] = useState('');
     const [passwordError, setPasswordError] = useState('');
     const [passwordValidity, setPasswordValidity] = useState('');
@@ -37,11 +36,15 @@ const Register = () => {
     const onAuthStateChanged = (user) => {
         setUser(user);
         console.log('user called', user);
-        dispatch(loginUser({
-            email: email,
-            username: username
-        }));
-        navigate('HomeStack');
+        if(user) {
+            dispatch(loginUser({
+                email: email,
+                // refreshToken: user?.refreshToken,
+                uid: user?.uid
+    
+            }));
+            navigate('HomeStack');
+        }
     }
 
     useEffect(() => {
@@ -89,13 +92,6 @@ const Register = () => {
                 <View style={styles.loginScreenContainer}>
                     <View style={styles.loginFormView}>
                         <Text style={styles.logoText}>Register</Text>
-                        <TextInput
-                            placeholder="Username"
-                            placeholderColor="#c4c3cb"
-                            value={username}
-                            onChangeText={setUsername}
-                            style={styles.loginFormTextInput}
-                        />
                         <TextInput
                             placeholder="Email"
                             placeholderColor="#c4c3cb"

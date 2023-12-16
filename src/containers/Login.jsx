@@ -32,23 +32,23 @@ const Login = () => {
     const onAuthStateChanged = (user) => {
         setUser(user);
         console.log('user called', user);
-        dispatch(loginUser({
-            email: email,
-            username: user
-        }));
         if (user) {
+            dispatch(loginUser({
+                email: user?.email,
+                uid: user?.uid
+            }));
             navigate('HomeStack');
         }
     }
 
     useEffect(() => {
-        // signOut();
+        signOut();
         let subscriber = subscribeAuthState(onAuthStateChanged);
         return subscriber;
     }, []);
 
 
-    const onLoginPress = () => signInWithEmailAndPassword(email, password);
+    const onLoginPress = () => signInWithEmailAndPassword('ridwanshuvro111@gmail.com', 'Asdf!@34');
     return (
         <KeyboardAvoidingView style={styles.containerView} behavior="padding">
             <Pressable onPress={Keyboard.dismiss} style={styles.screenTouchView}>

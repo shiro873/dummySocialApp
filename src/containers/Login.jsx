@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
     Alert,
     Keyboard,
@@ -11,12 +12,43 @@ import {
     Button,
     Pressable
 } from "react-native";
-import * as NavigationService from '../navigator/navigation-service';
+import { navigate } from '../services/navigation-service';
+import {
+    signInWithEmailAndPassword,
+    subscribeAuthState,
+    signOut
+} from '../services/firebase-service';
+import {
+    loginUser
+} from '../redux/reducers/profileReducer';
 
 const Login = () => {
-    const onLoginPress = () => {
-        NavigationService.navigate('HomeStack')
+    const dispatch = useDispatch();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [user, setUser] = useState({});
+
+    // Handle user state changes
+    const onAuthStateChanged = (user) => {
+        setUser(user);
+        console.log('user called', user);
+        dispatch(loginUser({
+            email: email,
+            username: user
+        }));
+        if (user) {
+            navigate('HomeStack');
+        }
     }
+
+    useEffect(() => {
+        // signOut();
+        let subscriber = subscribeAuthState(onAuthStateChanged);
+        return subscriber;
+    }, []);
+
+
+    const onLoginPress = () => signInWithEmailAndPassword(email, password);
     return (
         <KeyboardAvoidingView style={styles.containerView} behavior="padding">
             <Pressable onPress={Keyboard.dismiss} style={styles.screenTouchView}>
@@ -39,7 +71,7 @@ const Login = () => {
                             onPress={() => onLoginPress()}
                             title="Login"
                         />
-                        <Pressable onPress={() => NavigationService.navigate('Register')}>
+                        <Pressable onPress={() => navigate('Register')}>
                             <Text>Create Account!</Text>
                         </Pressable>
                     </View>

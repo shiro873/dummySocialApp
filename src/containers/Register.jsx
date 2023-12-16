@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
     Alert,
     Keyboard,
@@ -11,11 +11,79 @@ import {
     Button,
     Pressable
 } from "react-native";
-import * as NavigationService from '../navigator/navigation-service';
+import { useDispatch, useSelector } from "react-redux";
+import { navigate } from '../services/navigation-service';
+import {
+    createUserWithEmailAndPassword,
+    subscribeAuthState
+} from '../services/firebase-service';
+import {
+    loginUser
+} from '../redux/reducers/profileReducer';
 
+const Register = () => {
+    const dispatch = useDispatch();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [reEnterPassword, setReEnterPassword] = useState('');
+    const [username, setUsername] = useState('');
+    const [emailError, setEmailError] = useState('');
+    const [passwordError, setPasswordError] = useState('');
+    const [passwordValidity, setPasswordValidity] = useState('');
+    const [validPassword, setValidPassword] = useState(false);
+    const [user, setUser] = useState({});
 
-const Register = () =>{
-    return(
+    // Handle user state changes
+    const onAuthStateChanged = (user) => {
+        setUser(user);
+        console.log('user called', user);
+        dispatch(loginUser({
+            email: email,
+            username: username
+        }));
+        navigate('HomeStack');
+    }
+
+    useEffect(() => {
+        let subscriber = subscribeAuthState(onAuthStateChanged);
+        return subscriber;
+    }, []);
+
+    const validateEmail = () => {
+        const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/;
+        if (!emailRegex.test(email)) {
+            setEmailError('Please enter a valid email address');
+        } else {
+            setEmailError('');
+        }
+    }
+
+    const validatePassword = () => {
+        const passwordRegex = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+        if (!passwordRegex.test(password)) {
+            setPasswordValidity('Please enter a valid password');
+            setValidPassword(false);
+        } else {
+            setPasswordValidity('');
+            setValidPassword(true);
+        }
+    }
+
+    const validateReEnter = () => password === reEnterPassword ? setPasswordError(true) : setPasswordError(false);
+
+    const onRegisterPress = () => {
+        // if (
+        //     passwordError === '' ||
+        //     emailError === '' ||
+        //     !validPassword
+        // ) {
+        //     return;
+        // }
+
+        const result = createUserWithEmailAndPassword(email, password); //'ridwanshuvro111@gmail.com', 'Asdf!@34'
+    }
+
+    return (
         <KeyboardAvoidingView style={styles.containerView} behavior="padding">
             <Pressable onPress={Keyboard.dismiss}>
                 <View style={styles.loginScreenContainer}>
@@ -24,20 +92,51 @@ const Register = () =>{
                         <TextInput
                             placeholder="Username"
                             placeholderColor="#c4c3cb"
+                            value={username}
+                            onChangeText={setUsername}
                             style={styles.loginFormTextInput}
                         />
                         <TextInput
+                            placeholder="Email"
+                            placeholderColor="#c4c3cb"
+                            value={email}
+                            onChangeText={setEmail}
+                            onEndEditing={validateEmail}
+                            style={styles.loginFormTextInput}
+                        />
+                        <Text>
+                            {emailError}
+                        </Text>
+                        <TextInput
                             placeholder="Password"
                             placeholderColor="#c4c3cb"
+                            value={password}
+                            onChangeText={setPassword}
+                            onEndEditing={validatePassword}
                             style={styles.loginFormTextInput}
                             secureTextEntry={true}
                         />
+                        <Text>
+                            {passwordValidity}
+                        </Text>
+                        <TextInput
+                            placeholder="Re Enter Password"
+                            placeholderColor="#c4c3cb"
+                            value={reEnterPassword}
+                            onChangeText={setReEnterPassword}
+                            onEndEditing={validateReEnter}
+                            style={styles.loginFormTextInput}
+                            secureTextEntry={true}
+                        />
+                        <Text>
+                            {passwordError}
+                        </Text>
                         <Button
                             buttonStyle={styles.loginButton}
-                            onPress={() => onLoginPress()}
+                            onPress={() => onRegisterPress()}
                             title="Login"
                         />
-                        <Pressable onPress={() => NavigationService.navigate('Login')}>
+                        <Pressable onPress={() => navigate('Login')}>
                             <Text>Login</Text>
                         </Pressable>
                     </View>

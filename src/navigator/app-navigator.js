@@ -6,8 +6,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 // App Navigation
-import * as NavigationService from './navigation-service';
-import { navigationRef } from './navigation-service';
+import * as NavigationService from '../services/navigation-service';
+import { navigationRef } from '../services/navigation-service';
 
 
 // screens

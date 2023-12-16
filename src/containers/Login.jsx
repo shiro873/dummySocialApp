@@ -21,6 +21,7 @@ import {
 import {
     loginUser
 } from '../redux/reducers/profileReducer';
+import RootView from "../components/RootView";
 
 const Login = () => {
     const dispatch = useDispatch();
@@ -50,35 +51,30 @@ const Login = () => {
 
     const onLoginPress = () => signInWithEmailAndPassword('ridwanshuvro111@gmail.com', 'Asdf!@34');
     return (
-        <KeyboardAvoidingView style={styles.containerView} behavior="padding">
-            <Pressable onPress={Keyboard.dismiss} style={styles.screenTouchView}>
-                <View style={styles.loginScreenContainer}>
-                    <View style={styles.loginFormView}>
-                        <Text style={styles.logoText}>Login</Text>
-                        <TextInput
-                            placeholder="Username"
-                            placeholderColor="#c4c3cb"
-                            style={styles.loginFormTextInput}
-                        />
-                        <TextInput
-                            placeholder="Password"
-                            placeholderColor="#c4c3cb"
-                            style={styles.loginFormTextInput}
-                            secureTextEntry={true}
-                        />
-                        <Button
-                            buttonStyle={styles.loginButton}
-                            onPress={() => onLoginPress()}
-                            title="Login"
-                        />
-                        <Pressable onPress={() => navigate('Register')}>
-                            <Text>Create Account!</Text>
-                        </Pressable>
-                    </View>
-
-                </View>
-            </Pressable>
-        </KeyboardAvoidingView>
+        <RootView>
+            <View style={styles.loginFormView}>
+                <Text style={styles.logoText}>Login</Text>
+                <TextInput
+                    placeholder="Username"
+                    placeholderColor="#c4c3cb"
+                    style={styles.loginFormTextInput}
+                />
+                <TextInput
+                    placeholder="Password"
+                    placeholderColor="#c4c3cb"
+                    style={styles.loginFormTextInput}
+                    secureTextEntry={true}
+                />
+                <Button
+                    buttonStyle={styles.loginButton}
+                    onPress={() => onLoginPress()}
+                    title="Login"
+                />
+                <Pressable onPress={() => navigate('Register')}>
+                    <Text>Create Account!</Text>
+                </Pressable>
+            </View>
+        </RootView>
     )
 }
 

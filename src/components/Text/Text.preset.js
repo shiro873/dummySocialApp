@@ -1,4 +1,4 @@
-import { colors } from '../theme/colors';
+import { colors } from '../../theme/colors';
 
 const fontSizes = {
   tiny: 10,
@@ -11,23 +11,23 @@ const fontSizes = {
 };
 
 export const bodyText = {
-  fontFamily: 'RobotoCondensed-VariableFont_wght',
+  fontFamily: 'DMSans-Regular',
   fontWeight: 400,
   fontSize: fontSizes.body,
   lineHeight: 18.5,
 };
 export const bodyText_500 = {
-  fontFamily: 'RobotoCondensed-VariableFont_wght',
+  fontFamily: 'DMSans-Regular',
   fontWeight: 500,
   fontSize: fontSizes.body,
 };
 
 export const mediumText = {
-  fontFamily: 'RobotoCondensed-VariableFont_wght',
+  fontFamily: 'DMSans-Medium',
 };
 
 export const boldText = {
-  fontFamily: 'RobotoCondensed-VariableFont_wght',
+  fontFamily: 'DMSans-Bold',
 };
 
 export const presets = {
@@ -42,18 +42,18 @@ export const presets = {
     color: colors.black,
   },
   small: {
-    fontFamily: 'RobotoCondensed-VariableFont_wght',
+    fontFamily: 'DMSans-Regular',
     fontWeight: 400,
     fontSize: fontSizes.small,
   },
   tiny: {
-    fontFamily: 'RobotoCondensed-VariableFont_wght',
+    fontFamily: 'DMSans-Regular',
     fontWeight: 400,
     fontSize: fontSizes.tiny,
   },
   btn_bold: {
     color: colors.white,
-    fontFamily: 'RobotoCondensed-VariableFont_wght',
+    fontFamily: 'DMSans-Bold',
     fontSize: fontSizes.header_1,
   },
   white: {
@@ -78,13 +78,13 @@ export const presets = {
     color: colors.disabled_alternate,
   },
   error_msg: {
-    fontFamily: 'RobotoCondensed-VariableFont_wght',
+    fontFamily: 'DMSans-BoldItalic',
     fontSize: fontSizes.tiny,
     color: colors.error,
   },
 
   hr_policy: {
-    fontFamily: 'RobotoCondensed-VariableFont_wght',
+    fontFamily: 'DMSans-Regular',
     fontWeight: 400,
     fontSize: 15,
     lineHeight: 20,

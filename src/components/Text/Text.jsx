@@ -1,4 +1,4 @@
-import { Text as SAText, StyleSheet } from 'react-native';
+import { Text as CustomText, StyleSheet } from 'react-native';
 import React from 'react';
 import { presets } from './Text.preset';
 
@@ -11,11 +11,11 @@ export default function Text({
 }) {
   const textStyle = presets[preset];
   return (
-    <SAText
+    <CustomText
       numberOfLines={numberOfLines}
       style={[textStyle, centered && styles.centered, customStyle]}>
       {children}
-    </SAText>
+    </CustomText>
   );
 }
 

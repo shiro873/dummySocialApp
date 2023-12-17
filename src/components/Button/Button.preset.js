@@ -10,6 +10,7 @@ export const presets = {
   default: {
     ...defaultPresets,
     width: '100%',
+    maxWidth: 320
   },
   auth_Button: {
     ...defaultPresets,

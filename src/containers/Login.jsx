@@ -6,11 +6,11 @@ import {
     TextInput,
     View,
     StyleSheet,
-    Button,
     Pressable
 } from "react-native";
 import Input from "../components/Input/Input";
 import RootView from "../components/RootView";
+import Button from "../components/Button/Button";
 // Style constans
 import { sizes } from "../theme/sizes";
 // services
@@ -67,11 +67,9 @@ const Login = () => {
                     value={password}
                     onChangeText={setPassword}
                 />
-                <Button
-                    buttonStyle={styles.loginButton}
-                    onPress={() => onLoginPress()}
-                    title="Login"
-                />
+                <Button preset={'auth_button'} onPress={onLoginPress} customStyle={styles.loginButton}>
+                    Signin
+                </Button>
                 <Pressable onPress={() => navigate('Register')}>
                     <Text>Create Account!</Text>
                 </Pressable>

@@ -1,7 +1,7 @@
-import {StyleSheet, Text, View, Pressable as SAButton} from 'react-native';
+import {StyleSheet, View, Pressable as CustomButton} from 'react-native';
 import React from 'react';
 
-import SAText from '../Text';
+import Text from '../Text/Text';
 import {presets, btnTextPresets} from './Button.preset';
 import {colors} from '../../theme/colors';
 
@@ -18,7 +18,7 @@ const Button = ({
   const btnTextStyle = btnTextPresets[preset];
 
   return (
-    <SAButton
+    <CustomButton
       style={
         !disabled
           ? [btnStyle, customStyle]
@@ -26,13 +26,13 @@ const Button = ({
       }
       onPress={onPress}
       disabled={disabled}>
-      <SAText
+      <Text
         centered
         customStyle={[btnTextStyle, customBtnTextStyle]}
         preset="white">
         {children}
-      </SAText>
-    </SAButton>
+      </Text>
+    </CustomButton>
   );
 };
 

@@ -22,9 +22,7 @@ const RootView = ({
                     contentContainerStyle={[
                         styles.safeAreaContainer,
                     ]}>
-                    <View style={styles.childContainer}>
-                        {children}
-                    </View>
+                    {children}
                 </ScrollView>
             </Pressable>
         </KeyboardAvoidingView>
@@ -49,17 +47,15 @@ const styles = StyleSheet.create({
     },
     childContainer: {
         flex: 1,
-        minHeight: '100%',
+        // minHeight: '100%',
     },
     container: {
         flex: 1,
         width: '100%',
     },
     safeAreaContainer: {
-        // marginTop: sizes.spacing.xl,
         width: '100%',
         flexGrow: 1,
-        flexDirection: 'column'
     },
 });
 

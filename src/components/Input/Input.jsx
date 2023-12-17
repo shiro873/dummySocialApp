@@ -64,7 +64,6 @@ const Input = ({
                 inputStyle
             ]}
             placeholder={placeholder ? placeholder : null}
-            // labelProps={{}}
             rightIcon={rightIcon ? rightIcon : null}
             rightIconContainerStyle={{}}
             errorMessage={errorMessage}
@@ -77,8 +76,7 @@ const Input = ({
             keyboardType={keyboardType}
             inputMode={inputMode}
             onEndEditing={onEndEditing}
-            numberOfLines={numberOfLines ? numberOfLines : 1}
-        // disabledInputStyle={styles.disabledInput}
+            textAlignVertical='center'
         />
     );
 };

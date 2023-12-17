@@ -96,4 +96,8 @@ export const presets = {
     lineHeight: 10,
     color: colors.black,
   },
+  bold_text: {
+    fontFamily: 'DMSans-Bold',
+    color: colors.dark_cyan,
+  }
 };

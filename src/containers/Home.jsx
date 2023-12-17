@@ -8,14 +8,15 @@ import {
 } from 'react-native';
 import Text from "../components/Text/Text";
 import RootView from "../components/RootView";
+import Card from "../components/Card/Card";
+// Styled components
+import { sizes } from "../theme/sizes";
+import { colors } from "../theme/colors";
 // redux
 import { useDispatch, useSelector } from "react-redux";
 
 // services
 import { removePost } from "../redux/reducers/postReducer";
-import Card from "../components/Card/Card";
-import { sizes } from "../theme/sizes";
-import { colors } from "../theme/colors";
 
 const Home = () => {
     const dispatch = useDispatch();
@@ -43,7 +44,7 @@ const Home = () => {
     }
 
     return (
-        <RootView>
+        <RootView style={{flex: 1}}>
             <View style={styles.home_container}>
                 {renderPosts()}
             </View>
@@ -56,9 +57,10 @@ const styles = StyleSheet.create({
     home_container: {
         flex: 1,
         width: '100%',
-        height: '100%',
+        // height: '100%',
         alignItems: 'center',
-        paddingTop: sizes.spacing.l,
+        paddingTop: sizes.spacing.med_3,
+        marginBottom: 200
     },
     card: {
         marginTop: sizes.spacing.sm_6

@@ -14,6 +14,7 @@ import { sizes } from "../theme/sizes";
 import { useSelector, useDispatch } from "react-redux";
 // services
 import { addPost } from "../redux/reducers/postReducer";
+import { navigate } from "../services/navigation-service";
 
 const Post = () => {
     const dispatch = useDispatch();
@@ -29,25 +30,29 @@ const Post = () => {
                 post: post,
                 username: username,
                 date: new Date()
-            }))
+            }));
+            setPost('');
+            navigate('Home')
         }
     }
 
     return (
-        <View style={styles.container}>
-            <Input
-                label="Post"
-                placeholder={`Share what's on you mind!!`}
-                value={post}
-                onChangeText={setPost}
-                multiline={true}
-                customInputContainerStyles={styles.post_conatiner_style}
-                customInputStyles={styles.post_input_style}
-            />
-            <Button onPress={onPress}>
-                Post
-            </Button>
-        </View>
+        <RootView>
+            <View style={styles.container}>
+                <Input
+                    label="Post"
+                    placeholder={`Share what's on you mind!!`}
+                    value={post}
+                    onChangeText={setPost}
+                    multiline={true}
+                    customInputContainerStyles={styles.post_conatiner_style}
+                    customInputStyles={styles.post_input_style}
+                />
+                <Button onPress={onPress}>
+                    Post
+                </Button>
+            </View>
+        </RootView>
     )
 }
 
@@ -56,7 +61,6 @@ const styles = StyleSheet.create({
         flex: 1,
         width: '100%',
         height: '100%',
-        // justifyContent: 'center',
         alignItems: 'center',
         paddingTop: sizes.spacing.l,
         elevation: 5

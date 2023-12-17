@@ -50,7 +50,7 @@ const Login = () => {
     }, []);
 
 
-    const onLoginPress = () => signInWithEmailAndPassword('ridwanshuvro111@gmail.com', 'Asdf!@34');
+    const onLoginPress = () => signInWithEmailAndPassword(email, password);
     return (
         <RootView>
             <View style={styles.loginFormView}>

@@ -1,27 +1,29 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+// UI Components
 import {
-    Alert,
-    Keyboard,
-    KeyboardAvoidingView,
     Text,
     TextInput,
-    TouchableWithoutFeedback,
     View,
     StyleSheet,
     Button,
     Pressable
 } from "react-native";
+import Input from "../components/Input/Input";
+import RootView from "../components/RootView";
+// Style constans
+import { sizes } from "../theme/sizes";
+// services
 import { navigate } from '../services/navigation-service';
 import {
     signInWithEmailAndPassword,
     subscribeAuthState,
     signOut
 } from '../services/firebase-service';
+// redux
 import {
     loginUser
 } from '../redux/reducers/profileReducer';
-import RootView from "../components/RootView";
 
 const Login = () => {
     const dispatch = useDispatch();
@@ -30,40 +32,40 @@ const Login = () => {
     const [user, setUser] = useState({});
 
     // Handle user state changes
-    const onAuthStateChanged = (user) => {
-        setUser(user);
-        console.log('user called', user);
-        if (user) {
-            dispatch(loginUser({
-                email: user?.email,
-                uid: user?.uid
-            }));
-            navigate('HomeStack');
-        }
-    }
+    // const onAuthStateChanged = (user) => {
+    //     setUser(user);
+    //     console.log('user called', user);
+    //     if (user) {
+    //         dispatch(loginUser({
+    //             email: user?.email,
+    //             uid: user?.uid
+    //         }));
+    //         navigate('HomeStack');
+    //     }
+    // }
 
-    useEffect(() => {
-        // signOut();
-        let subscriber = subscribeAuthState(onAuthStateChanged);
-        return subscriber;
-    }, []);
+    // useEffect(() => {
+    //     // signOut();
+    //     let subscriber = subscribeAuthState(onAuthStateChanged);
+    //     return subscriber;
+    // }, []);
 
 
     const onLoginPress = () => signInWithEmailAndPassword('ridwanshuvro111@gmail.com', 'Asdf!@34');
     return (
         <RootView>
             <View style={styles.loginFormView}>
-                <Text style={styles.logoText}>Login</Text>
-                <TextInput
-                    placeholder="Username"
-                    placeholderColor="#c4c3cb"
-                    style={styles.loginFormTextInput}
+                <Input
+                    label={'Email'}
+                    onChangeText={setEmail}
+                    value={email}
+                    keyboardType={'email-address'}
                 />
-                <TextInput
-                    placeholder="Password"
-                    placeholderColor="#c4c3cb"
-                    style={styles.loginFormTextInput}
+                <Input
+                    label={'Password'}
                     secureTextEntry={true}
+                    value={password}
+                    onChangeText={setPassword}
                 />
                 <Button
                     buttonStyle={styles.loginButton}
@@ -79,37 +81,14 @@ const Login = () => {
 }
 
 const styles = StyleSheet.create({
-    containerView: {
-        flex: 1,
-        alignItems: "center",
-        width: '100%',
-        height: '100%',
-    },
-    screenTouchView: {
-        flex: 1,
-        width: '100%',
-        height: '100%',
-    },
-    loginScreenContainer: {
-        flex: 1,
-        width: '100%',
-        height: '100%',
-        marginLeft: 20,
-        marginRight: 20,
-        justifyContent: 'center',
-    },
-    logoText: {
-        fontSize: 40,
-        fontWeight: "800",
-        marginTop: 150,
-        marginBottom: 30,
-        textAlign: "center",
-    },
     loginFormView: {
         flex: 1,
         width: '100%',
         height: '100%',
-        alignSelf: 'center'
+        // backgroundColor: '#045',
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingTop: sizes.spacing.l
     },
     loginFormTextInput: {
         height: 43,
@@ -123,6 +102,7 @@ const styles = StyleSheet.create({
         paddingLeft: 10,
         marginTop: 5,
         marginBottom: 5,
+        alignSelf: 'center'
     },
     loginButton: {
         backgroundColor: "#3897f1",

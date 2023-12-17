@@ -2,9 +2,6 @@ import React, { useEffect, useState } from "react";
 
 // UI components
 import {
-    Keyboard,
-    KeyboardAvoidingView,
-    TextInput,
     View,
     StyleSheet,
     Pressable
@@ -29,6 +26,7 @@ import {
 import {
     loginUser
 } from '../redux/reducers/profileReducer';
+import { colors } from "../theme/colors";
 
 const Register = () => {
     const dispatch = useDispatch();
@@ -45,7 +43,7 @@ const Register = () => {
     const onAuthStateChanged = (user) => {
         setUser(user);
         console.log('user called', user);
-        if(user) {
+        if (user) {
             dispatch(loginUser({
                 email: email,
                 // refreshToken: user?.refreshToken,
@@ -73,7 +71,7 @@ const Register = () => {
     const validatePassword = () => {
         const passwordRegex = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
         if (!passwordRegex.test(password)) {
-            setPasswordValidity('Please enter a valid password');
+            setPasswordValidity('Password needs to be at least 8 characters, have at least one capital letter, one number, one special character, one small letter');
             setValidPassword(false);
         } else {
             setPasswordValidity('');
@@ -112,13 +110,16 @@ const Register = () => {
                     onChangeText={setPassword}
                     onEndEditing={validatePassword}
                     secureTextEntry={true}
+                    errorMessage={passwordValidity}
                 />
-                {
+                {/* {
                     passwordValidity &&
-                    <Text>
-                        {passwordValidity}
-                    </Text>
-                }
+                    <View style={styles.password_validity_view}>
+                        <Text customStyle={styles.password_validity_text} preset="small">
+                            {passwordValidity}
+                        </Text>
+                    </View>
+                } */}
                 <Input
                     label="Re Enter Password"
                     value={reEnterPassword}
@@ -151,6 +152,16 @@ const styles = StyleSheet.create({
     },
     signin_link: {
         marginTop: sizes.spacing.sm_4
+    },
+    password_validity_view: {
+        width: '100%',
+        maxWidth: 320,
+        marginLeft: sizes.spacing.l,
+        marginBottom: sizes.spacing.med_3
+    },
+    password_validity_text: {
+        alignSelf: 'flex-start',
+        color: colors.error
     }
 });
 

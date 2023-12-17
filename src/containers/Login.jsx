@@ -39,12 +39,13 @@ const Login = () => {
                 email: user?.email,
                 uid: user?.uid
             }));
+            setEmail('');
+            setPassword('');
             navigate('HomeStack');
         }
     }
 
     useEffect(() => {
-        // signOut();
         let subscriber = subscribeAuthState(onAuthStateChanged);
         return subscriber;
     }, []);

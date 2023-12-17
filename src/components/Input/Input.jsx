@@ -32,6 +32,7 @@ const Input = ({
     editable,
     inputMode,
     onEndEditing,
+    numberOfLines
 }) => {
     const containerStyle = containerPresets[preset];
     const inputContainerStyle = inputContainerPresets[preset];
@@ -56,11 +57,11 @@ const Input = ({
                 disabled === true
                     ? [styles.disabledInputContainer, customDisabledContainerStyle]
                     : inputContainerStyle,
-                customInputContainerStyles,
+                customInputContainerStyles
             ]}
             inputStyle={[
                 disabled === true ? styles.disabledInput : customInputStyles,
-                inputStyle,
+                inputStyle
             ]}
             placeholder={placeholder ? placeholder : null}
             // labelProps={{}}
@@ -76,6 +77,7 @@ const Input = ({
             keyboardType={keyboardType}
             inputMode={inputMode}
             onEndEditing={onEndEditing}
+            numberOfLines={numberOfLines ? numberOfLines : 1}
         // disabledInputStyle={styles.disabledInput}
         />
     );

@@ -76,6 +76,9 @@ const AppNavigator = () => {
           component={Register}
         />
         <Stack.Screen
+          options={{
+            headerShown: false,
+          }}
           name='HomeStack'
           component={BottomTabNavigator}
         />

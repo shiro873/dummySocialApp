@@ -10,7 +10,7 @@ import Input from "../components/Input/Input";
 import RootView from "../components/RootView";
 import Button from "../components/Button/Button";
 import Text from "../components/Text/Text";
-// Style constans
+// Style constants
 import { sizes } from "../theme/sizes";
 // services
 import { navigate } from '../services/navigation-service';

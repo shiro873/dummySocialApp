@@ -57,10 +57,8 @@ const styles = StyleSheet.create({
         flex: 1,
         width: '100%',
         height: '100%',
-        // justifyContent: 'center',
         alignItems: 'center',
         paddingTop: sizes.spacing.l,
-        // backgroundColor: '#000'
     },
     card: {
         marginTop: sizes.spacing.sm_6

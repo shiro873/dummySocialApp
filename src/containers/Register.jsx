@@ -1,17 +1,26 @@
 import React, { useEffect, useState } from "react";
+
+// UI components
 import {
-    Alert,
     Keyboard,
     KeyboardAvoidingView,
-    Text,
     TextInput,
-    TouchableWithoutFeedback,
     View,
     StyleSheet,
-    Button,
     Pressable
 } from "react-native";
+import Input from "../components/Input/Input";
+import RootView from "../components/RootView";
+import Button from "../components/Button/Button";
+import Text from "../components/Text/Text";
+
+// Style constants
+import { sizes } from "../theme/sizes";
+
+// redux
 import { useDispatch, useSelector } from "react-redux";
+
+// service
 import { navigate } from '../services/navigation-service';
 import {
     createUserWithEmailAndPassword,
@@ -41,7 +50,7 @@ const Register = () => {
                 email: email,
                 // refreshToken: user?.refreshToken,
                 uid: user?.uid
-    
+
             }));
             navigate('HomeStack');
         }
@@ -75,109 +84,73 @@ const Register = () => {
     const validateReEnter = () => password === reEnterPassword ? setPasswordError(true) : setPasswordError(false);
 
     const onRegisterPress = () => {
-        // if (
-        //     passwordError === '' ||
-        //     emailError === '' ||
-        //     !validPassword
-        // ) {
-        //     return;
-        // }
+        if (
+            passwordError === '' ||
+            emailError === '' ||
+            !validPassword
+        ) {
+            return;
+        }
 
-        const result = createUserWithEmailAndPassword(email, password); //'ridwanshuvro111@gmail.com', 'Asdf!@34'
+        createUserWithEmailAndPassword(email, password); //'ridwanshuvro111@gmail.com', 'Asdf!@34'
     }
 
     return (
-        <KeyboardAvoidingView style={styles.containerView} behavior="padding">
-            <Pressable onPress={Keyboard.dismiss}>
-                <View style={styles.loginScreenContainer}>
-                    <View style={styles.loginFormView}>
-                        <Text style={styles.logoText}>Register</Text>
-                        <TextInput
-                            placeholder="Email"
-                            placeholderColor="#c4c3cb"
-                            value={email}
-                            onChangeText={setEmail}
-                            onEndEditing={validateEmail}
-                            style={styles.loginFormTextInput}
-                        />
-                        <Text>
-                            {emailError}
-                        </Text>
-                        <TextInput
-                            placeholder="Password"
-                            placeholderColor="#c4c3cb"
-                            value={password}
-                            onChangeText={setPassword}
-                            onEndEditing={validatePassword}
-                            style={styles.loginFormTextInput}
-                            secureTextEntry={true}
-                        />
-                        <Text>
-                            {passwordValidity}
-                        </Text>
-                        <TextInput
-                            placeholder="Re Enter Password"
-                            placeholderColor="#c4c3cb"
-                            value={reEnterPassword}
-                            onChangeText={setReEnterPassword}
-                            onEndEditing={validateReEnter}
-                            style={styles.loginFormTextInput}
-                            secureTextEntry={true}
-                        />
-                        <Text>
-                            {passwordError}
-                        </Text>
-                        <Button
-                            buttonStyle={styles.loginButton}
-                            onPress={() => onRegisterPress()}
-                            title="Login"
-                        />
-                        <Pressable onPress={() => navigate('Login')}>
-                            <Text>Login</Text>
-                        </Pressable>
-                    </View>
-                </View>
-            </Pressable>
-        </KeyboardAvoidingView>
+        <RootView>
+            <View style={styles.registerFormView}>
+                <Input
+                    label="Email"
+                    value={email}
+                    onChangeText={setEmail}
+                    onEndEditing={validateEmail}
+                    errorMessage={emailError}
+                    style={styles.loginFormTextInput}
+                />
+                <Input
+                    label="Password"
+                    value={password}
+                    onChangeText={setPassword}
+                    onEndEditing={validatePassword}
+                    secureTextEntry={true}
+                />
+                {
+                    passwordValidity &&
+                    <Text>
+                        {passwordValidity}
+                    </Text>
+                }
+                <Input
+                    label="Re Enter Password"
+                    value={reEnterPassword}
+                    errorMessage={passwordError}
+                    onChangeText={setReEnterPassword}
+                    onEndEditing={validateReEnter}
+                    secureTextEntry={true}
+                />
+                <Button preset={'auth_button'} onPress={onRegisterPress}>
+                    Register
+                </Button>
+                <Text preset="body" customStyle={styles.signin_link}>Already have an account?</Text>
+                <Pressable onPress={() => navigate('Login')}>
+                    <Text preset="link">Login</Text>
+                </Pressable>
+            </View>
+        </RootView>
     )
 }
 
 const styles = StyleSheet.create({
-    containerView: {
+    registerFormView: {
         flex: 1,
-        alignItems: "center"
+        width: '100%',
+        height: '100%',
+        // backgroundColor: '#045',
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingTop: sizes.spacing.l
     },
-    loginScreenContainer: {
-        flex: 1,
-    },
-    logoText: {
-        fontSize: 40,
-        fontWeight: "800",
-        marginTop: 150,
-        marginBottom: 30,
-        textAlign: "center",
-    },
-    loginFormView: {
-        flex: 1,
-    },
-    loginFormTextInput: {
-        height: 43,
-        fontSize: 14,
-        borderRadius: 5,
-        borderWidth: 1,
-        borderColor: "#eaeaea",
-        backgroundColor: "#fafafa",
-        paddingLeft: 10,
-        marginTop: 5,
-        marginBottom: 5,
-    },
-    loginButton: {
-        backgroundColor: "#3897f1",
-        borderRadius: 5,
-        height: 45,
-        marginTop: 10,
-        width: 350,
-        alignItems: "center"
+    signin_link: {
+        marginTop: sizes.spacing.sm_4
     }
 });
 

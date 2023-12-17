@@ -4,6 +4,7 @@ const initialState = {
   posts: [{
     username: 'first user',
     post: 'first post ever made which makes no sens',
+    date: new Date()
   }],
 }
 

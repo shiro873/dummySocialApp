@@ -11,7 +11,7 @@ const labelStylesDefault = {
 export const containerPresets = {
   label_default: {
     ...labelStylesDefault,
-    // fontFamily: 'DMSans-Regular',
+    fontFamily: 'DMSans-Regular',
     color: colors.gray_label,
     fontSize: 10,
     lineHeight: 20,
@@ -69,7 +69,7 @@ export const inputContainerPresets = {
 export const inputStylePresets = {
   default: {
     fontSize: 14,
-    // fontFamily: 'DMSans-Regular',
+    fontFamily: 'DMSans-Regular',
     lineHeight: 24,
     color: colors.black,
     marginBottom: 10,
@@ -83,7 +83,7 @@ export const inputStylePresets = {
   },
   large: {
     fontSize: 14,
-    // fontFamily: 'DMSans-Regular',
+    fontFamily: 'DMSans-Regular',
     paddingLeft: 0,
     marginBottom: 10,
   },

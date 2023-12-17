@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // UI Components
 import {
-    Text,
-    TextInput,
     View,
     StyleSheet,
     Pressable
@@ -11,6 +9,7 @@ import {
 import Input from "../components/Input/Input";
 import RootView from "../components/RootView";
 import Button from "../components/Button/Button";
+import Text from "../components/Text/Text";
 // Style constans
 import { sizes } from "../theme/sizes";
 // services
@@ -32,23 +31,23 @@ const Login = () => {
     const [user, setUser] = useState({});
 
     // Handle user state changes
-    // const onAuthStateChanged = (user) => {
-    //     setUser(user);
-    //     console.log('user called', user);
-    //     if (user) {
-    //         dispatch(loginUser({
-    //             email: user?.email,
-    //             uid: user?.uid
-    //         }));
-    //         navigate('HomeStack');
-    //     }
-    // }
+    const onAuthStateChanged = (user) => {
+        setUser(user);
+        console.log('user called', user);
+        if (user) {
+            dispatch(loginUser({
+                email: user?.email,
+                uid: user?.uid
+            }));
+            navigate('HomeStack');
+        }
+    }
 
-    // useEffect(() => {
-    //     // signOut();
-    //     let subscriber = subscribeAuthState(onAuthStateChanged);
-    //     return subscriber;
-    // }, []);
+    useEffect(() => {
+        // signOut();
+        let subscriber = subscribeAuthState(onAuthStateChanged);
+        return subscriber;
+    }, []);
 
 
     const onLoginPress = () => signInWithEmailAndPassword('ridwanshuvro111@gmail.com', 'Asdf!@34');
@@ -67,11 +66,12 @@ const Login = () => {
                     value={password}
                     onChangeText={setPassword}
                 />
-                <Button preset={'auth_button'} onPress={onLoginPress} customStyle={styles.loginButton}>
-                    Signin
+                <Button preset={'auth_button'} onPress={onLoginPress}>
+                    Login
                 </Button>
+                <Text preset="body" customStyle={styles.signup_link}>Don't have an account?</Text>
                 <Pressable onPress={() => navigate('Register')}>
-                    <Text>Create Account!</Text>
+                    <Text preset="link" >Create Account!</Text>
                 </Pressable>
             </View>
         </RootView>
@@ -88,28 +88,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingTop: sizes.spacing.l
     },
-    loginFormTextInput: {
-        height: 43,
-        width: '100%',
-        maxWidth: 320,
-        fontSize: 14,
-        borderRadius: 5,
-        borderWidth: 1,
-        borderColor: "#eaeaea",
-        backgroundColor: "#fafafa",
-        paddingLeft: 10,
-        marginTop: 5,
-        marginBottom: 5,
-        alignSelf: 'center'
-    },
-    loginButton: {
-        backgroundColor: "#3897f1",
-        borderRadius: 5,
-        height: 45,
-        marginTop: 10,
-        width: '100%',
-        maxWidth: 320,
-        alignItems: "center"
+    signup_link: {
+        marginTop: sizes.spacing.sm_4
     }
 });
 

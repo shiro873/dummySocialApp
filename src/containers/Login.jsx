@@ -55,7 +55,6 @@ const Login = () => {
 
     const onLoginPress = () => {
         let response = signInWithEmailAndPassword(email, password);
-        // setButonPressed(true);
         if(!response?.success) {
             setError('Invalid email or password');
         }

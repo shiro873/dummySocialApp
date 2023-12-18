@@ -19,9 +19,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { removePost } from "../redux/reducers/postReducer";
 
 const Home = () => {
-    const dispatch = useDispatch();
     const posts = useSelector(state => state.post?.posts);
-    console.log(posts[0]);
 
     const renderPosts = () => {
         return (

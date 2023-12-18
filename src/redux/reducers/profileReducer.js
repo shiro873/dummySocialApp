@@ -9,7 +9,6 @@ export const profileSlice = createSlice({
   initialState,
   reducers: {
     loginUser: (state, action) => {
-      console.log('action.payload ', action.payload);
       state.profile = action.payload;
     },
     logoutUser: (state) => {

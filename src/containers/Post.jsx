@@ -22,9 +22,7 @@ const Post = () => {
     const [post, setPost] = useState('');
 
     const onPress = () => {
-        console.log()
         let username = user?.email?.split('@')[0];
-        // console.log('username ---', username);
         if (post !== '') {
             dispatch(addPost({
                 post: post,

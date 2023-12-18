@@ -29,6 +29,8 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [user, setUser] = useState({});
+    const [error, setError] = useState('');
+    const [buttonPressed, setButonPressed] = useState(false);
 
     // Handle user state changes
     const onAuthStateChanged = (user) => {
@@ -51,7 +53,13 @@ const Login = () => {
     }, []);
 
 
-    const onLoginPress = () => signInWithEmailAndPassword(email, password);
+    const onLoginPress = () => {
+        let response = signInWithEmailAndPassword(email, password);
+        // setButonPressed(true);
+        if(!response?.success) {
+            setError('Invalid email or password');
+        }
+    };
     return (
         <RootView>
             <View style={styles.loginFormView}>
@@ -66,8 +74,9 @@ const Login = () => {
                     secureTextEntry={true}
                     value={password}
                     onChangeText={setPassword}
+                    errorMessage={error}
                 />
-                <Button preset={'auth_button'} onPress={onLoginPress}>
+                <Button customStyle={styles.login_button} preset={'auth_button'} onPress={onLoginPress}>
                     Login
                 </Button>
                 <Text preset="body" customStyle={styles.signup_link}>Don't have an account?</Text>
@@ -90,6 +99,9 @@ const styles = StyleSheet.create({
         paddingTop: sizes.spacing.l
     },
     signup_link: {
+        marginTop: sizes.spacing.sm_4
+    },
+    login_button: {
         marginTop: sizes.spacing.sm_4
     }
 });

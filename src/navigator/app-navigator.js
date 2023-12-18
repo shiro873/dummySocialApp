@@ -17,6 +17,9 @@ import Profile from '../containers/Profile';
 import Login from '../containers/Login';
 import Register from '../containers/Register';
 
+// icons
+import Icon from 'react-native-ionicons'
+
 // stacks & tabs
 const BottomTab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -33,13 +36,24 @@ const BottomTabNavigator = () => {
       <BottomTab.Screen
         options={{
           headerShown: true,
+          headerTitle: '',
+          tabBarLabel: 'Feed',
+          tabBarIcon: () => (
+            null
+          ),
         }}
+        
         name="Home"
         component={Home}
       />
       <BottomTab.Screen
         options={{
           headerShown: true,
+          headerTitle: '',
+          tabBarLabel: 'Post',
+          tabBarIcon: () => (
+            null
+          ),
         }}
         name="Post"
         component={Post}
@@ -47,6 +61,11 @@ const BottomTabNavigator = () => {
       <BottomTab.Screen
         options={{
           headerShown: true,
+          headerTitle: '',
+          tabBarLabel: 'Profile',
+          tabBarIcon: () => (
+            null
+          ),
         }}
         name="Profile"
         component={Profile}

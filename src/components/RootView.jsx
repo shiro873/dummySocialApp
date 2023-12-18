@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     containerView: {
         flex: 1,
         width: '100%',
-        height: '100%',
+        // height: '100%',
         flexDirection: 'column'
     },
     scrollViewContainer: {
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     screenTouchView: {
         flex: 1,
         width: '100%',
-        height: '100%',
+        // height: '100%',
         justifyContent: 'center',
     },
     childContainer: {

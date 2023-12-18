@@ -14,18 +14,18 @@ const RootView = ({
     children,
 }) => {
     return (
-        <KeyboardAvoidingView style={styles.containerView} behavior="padding">
-            <Pressable onPress={Keyboard.dismiss} style={styles.screenTouchView}>
-                <StatusBar barStyle={'dark-content'} />
-                <ScrollView
-                    showsVerticalScrollIndicator={false}
-                    contentContainerStyle={[
-                        styles.safeAreaContainer,
-                    ]}>
+        <ScrollView
+            showsVerticalScrollIndicator={false}
+            contentContainerStyle={[
+                styles.safeAreaContainer,
+            ]}>
+            <KeyboardAvoidingView style={styles.containerView} behavior="padding">
+                <Pressable onPress={Keyboard.dismiss} style={styles.screenTouchView}>
+                    <StatusBar barStyle={'dark-content'} />
                     {children}
-                </ScrollView>
-            </Pressable>
-        </KeyboardAvoidingView>
+                </Pressable>
+            </KeyboardAvoidingView>
+        </ScrollView>
     )
 }
 

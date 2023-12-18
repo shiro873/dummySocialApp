@@ -26,6 +26,21 @@ const Home = () => {
     const renderPosts = () => {
         return (
             posts?.map(post => (
+                <View>
+                    <Card customCardStyle={styles.card}>
+                    <View style={styles.card_user_container}>
+                        <Image source={require('../assets/images/profile.webp')} style={styles.image} />
+                        <Text>
+                            {post?.user}
+                        </Text>
+                    </View>
+                    <Text customStyle={styles.post_style}>
+                        {post?.post}
+                    </Text>
+                    <Text>
+                        {post?.date?.toString()}
+                    </Text>
+                </Card>
                 <Card customCardStyle={styles.card}>
                     <View style={styles.card_user_container}>
                         <Image source={require('../assets/images/profile.webp')} style={styles.image} />
@@ -40,6 +55,63 @@ const Home = () => {
                         {post?.date?.toString()}
                     </Text>
                 </Card>
+                <Card customCardStyle={styles.card}>
+                    <View style={styles.card_user_container}>
+                        <Image source={require('../assets/images/profile.webp')} style={styles.image} />
+                        <Text>
+                            {post?.user}
+                        </Text>
+                    </View>
+                    <Text customStyle={styles.post_style}>
+                        {post?.post}
+                    </Text>
+                    <Text>
+                        {post?.date?.toString()}
+                    </Text>
+                </Card>
+                <Card customCardStyle={styles.card}>
+                    <View style={styles.card_user_container}>
+                        <Image source={require('../assets/images/profile.webp')} style={styles.image} />
+                        <Text>
+                            {post?.user}
+                        </Text>
+                    </View>
+                    <Text customStyle={styles.post_style}>
+                        {post?.post}
+                    </Text>
+                    <Text>
+                        {post?.date?.toString()}
+                    </Text>
+                </Card>
+                <Card customCardStyle={styles.card}>
+                    <View style={styles.card_user_container}>
+                        <Image source={require('../assets/images/profile.webp')} style={styles.image} />
+                        <Text>
+                            {post?.user}
+                        </Text>
+                    </View>
+                    <Text customStyle={styles.post_style}>
+                        {post?.post}
+                    </Text>
+                    <Text>
+                        {post?.date?.toString()}
+                    </Text>
+                </Card>
+                <Card customCardStyle={styles.card}>
+                    <View style={styles.card_user_container}>
+                        <Image source={require('../assets/images/profile.webp')} style={styles.image} />
+                        <Text>
+                            {post?.user}
+                        </Text>
+                    </View>
+                    <Text customStyle={styles.post_style}>
+                        {post?.post}
+                    </Text>
+                    <Text>
+                        {post?.date?.toString()}
+                    </Text>
+                </Card>
+                </View>
             )));
     }
 
@@ -60,7 +132,8 @@ const styles = StyleSheet.create({
         // height: '100%',
         alignItems: 'center',
         paddingTop: sizes.spacing.med_3,
-        marginBottom: 200
+        marginBottom: 200,
+        flexGrow: 1
     },
     card: {
         marginTop: sizes.spacing.sm_6

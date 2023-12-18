@@ -13,7 +13,7 @@ import { Provider } from 'react-redux';
 function App() {
   return (
     <Provider store={store}>
-      <AppNavigator />
+      <AppNavigator testID="app-component" />
     </Provider>
   );
 }
